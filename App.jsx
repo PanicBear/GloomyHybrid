@@ -1,18 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef } from 'react';
-import { NativeModules, SafeAreaView, StyleSheet } from 'react-native';
+import { NativeModules, PermissionsAndroid, Platform, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import WebViewContainrer from './components/WebViewContainter';
 
 const BACKGROUND_COLOR = "#051248";
 const App = () => {
   const webViewRef = useRef();
   useEffect(() => {
+    PermissionsAndroid.requestMultiple(
+      ['android.permission.CAMERA',
+        'android.permission.READ_EXTERNAL_STORAGE',]
+    ).then(console.log);
     NativeModules.WebViewSupportModule.initWebView();
   }, [])
   return (
     <SafeAreaView style={styles.container}>
       <WebViewContainrer style={styles.webview} webViewRef={webViewRef} />
-      <StatusBar style={'light'} backgroundColor={BACKGROUND_COLOR} />
+      <StatusBar backgroundColor={BACKGROUND_COLOR} />
     </SafeAreaView>
   );
 };
