@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { BackHandler, PermissionsAndroid, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
-import { WebViewContainrer } from './container';
+import { WebViewContainer } from './container';
 import { onAndroidBackHandler } from './handler';
 import { COLOR } from './style';
 
@@ -18,7 +18,7 @@ const App = () => {
   }, [])
   return (
     <SafeAreaView style={styles.container}>
-      <WebViewContainrer style={styles.webview} webViewRef={webViewRef} />
+      <WebViewContainer style={styles.webview} webViewRef={webViewRef} />
       <StatusBar backgroundColor={COLOR.GRAY02} barStyle={'dark-content'} />
     </SafeAreaView>
   );
