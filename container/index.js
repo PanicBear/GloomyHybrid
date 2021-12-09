@@ -1,1 +1,1 @@
-export {default as WebViewContainter} from './WebViewContainter';
+export {default as WebViewContainer} from './WebViewContainer';
