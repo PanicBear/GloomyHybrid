@@ -1,21 +1,27 @@
 import React, { useEffect, useRef } from 'react';
-import { NativeModules, PermissionsAndroid, Platform, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
-import WebViewContainrer from './components/WebViewContainter';
+import { BackHandler, PermissionsAndroid, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { WebViewContainrer } from './container';
+import { onAndroidBackHandler } from './handler';
+import { COLOR } from './style';
 
-const BACKGROUND_COLOR = "#051248";
 const App = () => {
   const webViewRef = useRef();
+  useEffect(() => {
+    Platform.OS === 'android' && BackHandler.addEventListener('hardwareBackPress', () => onAndroidBackHandler())
+    return BackHandler.removeEventListener('hardwareBackPress', () => onAndroidBackHandler());
+  }, [])
   useEffect(() => {
     PermissionsAndroid.requestMultiple(
       ['android.permission.CAMERA',
         'android.permission.READ_EXTERNAL_STORAGE',]
-    ).then(console.log);
-    NativeModules.WebViewSupportModule.initWebView();
+    ).then((permissions) => {
+      setPermissions(permissions);
+    });
   }, [])
   return (
     <SafeAreaView style={styles.container}>
-      <WebViewContainrer style={styles.webview} webViewRef={webViewRef} />
-      <StatusBar backgroundColor={BACKGROUND_COLOR} />
+      <WebViewContainrer style={styles.webview} webViewRef={webViewRef} permissions />
+      <StatusBar backgroundColor={COLOR.GRAY02} barStyle={'dark-content'} />
     </SafeAreaView>
   );
 };
@@ -23,7 +29,7 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: COLOR.WHITE,
   },
   webview: {
     flex: 1,
