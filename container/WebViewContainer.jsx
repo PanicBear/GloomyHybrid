@@ -5,7 +5,7 @@ import WebView from 'react-native-webview';
 
 const URI = 'https://d1gbspr5q497yq.cloudfront.net/community/new';
 
-const WebViewContainrer = ({ webViewRef, handleEndLoading }) => {
+const WebViewContainer = ({ webViewRef, handleEndLoading }) => {
   return (
     <WebView
       ref={webViewRef}
@@ -26,7 +26,7 @@ const WebViewContainrer = ({ webViewRef, handleEndLoading }) => {
     />
   );
 };
-export default WebViewContainrer;
+export default WebViewContainer;
 
 function parseMessage(data, webViewRef) {
   const action = JSON.parse(data).action;
