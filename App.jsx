@@ -14,13 +14,11 @@ const App = () => {
     PermissionsAndroid.requestMultiple(
       ['android.permission.CAMERA',
         'android.permission.READ_EXTERNAL_STORAGE',]
-    ).then((permissions) => {
-      setPermissions(permissions);
-    });
+    );
   }, [])
   return (
     <SafeAreaView style={styles.container}>
-      <WebViewContainrer style={styles.webview} webViewRef={webViewRef} permissions />
+      <WebViewContainrer style={styles.webview} webViewRef={webViewRef} />
       <StatusBar backgroundColor={COLOR.GRAY02} barStyle={'dark-content'} />
     </SafeAreaView>
   );

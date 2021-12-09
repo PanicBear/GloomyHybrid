@@ -3,7 +3,7 @@ import { NativeModules, Platform } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
 import WebView from 'react-native-webview';
 
-const URI = 'https://d1gbspr5q497yq.cloudfront.net';
+const URI = 'https://d1gbspr5q497yq.cloudfront.net/community/new';
 
 const WebViewContainrer = ({ webViewRef, handleEndLoading }) => {
   return (
